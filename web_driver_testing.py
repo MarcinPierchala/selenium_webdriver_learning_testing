@@ -1,0 +1,48 @@
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+#Otwieranie okna przeglądarki
+driver = webdriver.Chrome(ChromeDriverManager().install())
+driver.get("http://demo.automationtesting.in/Register.html")
+#Rozmiar okna
+driver.maximize_window()
+#Lokalizatory
+input_first_name = driver.find_element_by_xpath("//input[@placeholder='First Name']")
+input_last_name = driver.find_element_by_xpath("//input[@placeholder='Last Name']")
+textarea_address = driver.find_element_by_tag_name("textarea")
+input_email = driver.find_element_by_xpath("//input[@ng-model='EmailAdress']")
+input_phone = driver.find_element_by_xpath("//input[@type='tel']")
+radiobox_gender = driver.find_element_by_xpath("//input[@name='radiooptions' and @value='Male']")
+checkbox_hobby = driver.find_element_by_id("checkbox2")
+multiselect_language = driver.find_element_by_id("msdd") # wczesniejsze klikniecie, zanim Selenium będzie mógł kliknąć w dany język
+language = driver.find_element_by_xpath("//a[contains(text(),'Polish')]")
+select_skills = driver.find_element_by_xpath("//select[@id='Skills']/option[@value='Python']")
+select_country = driver.find_element_by_xpath("//*[@id='countries']/option[@value='Poland']")
+select_country2 = driver.find_element_by_xpath("//select[@id='country']/option[@value='United States of America']")
+select_birth_year = driver.find_element_by_xpath("//select[@id='yearbox']/option[@value='1982']")
+select_birth_month = driver.find_element_by_xpath("//select[@ng-model='monthbox']/option[@value='April']")
+select_birth_day = driver.find_element_by_xpath("//select[@id='daybox']/option[@value='20']")
+input_pwd = driver.find_element_by_xpath("//input[@id='firstpassword']")
+input_confirm_pwd = driver.find_element_by_xpath("//input[@id='secondpassword']")
+upload_photo = driver.find_element_by_id('imagesrc')
+button_submit = driver.find_element_by_id('submitbtn')
+#Akcje
+input_first_name.send_keys('Martin')
+input_last_name.send_keys('teddy bear')
+textarea_address.send_keys('POLSKA\nGLASGOW\nFIREMANSSTREET_5')
+input_email.send_keys('mail@mail.pl')
+input_phone.send_keys('9999999999') 
+radiobox_gender.click()
+checkbox_hobby.click()
+multiselect_language.click()
+language.click()
+select_skills.click()
+select_country.click()
+select_country2.click()
+select_birth_year.click()
+select_birth_month.click()
+select_birth_day.click()
+input_pwd.send_keys('Qwerty654321!')
+input_confirm_pwd.send_keys('Qwerty654321!')
+upload_photo.send_keys("C:/Python/seleniums/5.PNG") # trzeba podać absolutną ścieżkę pliku
+button_submit.click()
+driver.save_screenshot("screenshot1.png")
